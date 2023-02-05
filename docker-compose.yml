@@ -1,0 +1,13 @@
+version: '3'
+services:
+    nginx.lb:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: nginx/lb
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '80:80'
+        volumes:
+            - './sites-available:/etc/nginx/conf.d'
